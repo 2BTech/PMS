@@ -1,7 +1,6 @@
+
 #ifndef PMS_H
 #define PMS_H
-
-#include "Stream.h"
 
 class PMS
 {
@@ -23,12 +22,14 @@ public:
     uint16_t PM_AE_UG_2_5;
     uint16_t PM_AE_UG_10_0;
   };
-
-  PMS(Stream&);
+  
+  PMS();
+  void initPMS();
   void sleep();
   void wakeUp();
   void activeMode();
   void passiveMode();
+  
 
   void requestRead();
   bool read(DATA& data);
@@ -48,6 +49,7 @@ private:
   uint16_t _frameLen;
   uint16_t _checksum;
   uint16_t _calculatedChecksum;
+  bool _initialized;
 
   void loop();
 };
